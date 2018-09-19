@@ -1,97 +1,206 @@
-<!DOCTYPE html >
-
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-
-    <title>chatter|app</title>
-
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
-    
-    <link rel="stylesheet" href="../css/style.css"/>
-
     <meta charset="UTF-8">
+    <title>chatter|app</title>
+    
+    <!-- #4 embed the #roboto #font. This needs to go above your css -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
 
+    <!-- #4 #sweat out the styles by creating an #external css -->
+    <link rel="stylesheet" href="css/style.css" />
+    
+    <script src="js/main.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js">
+</script>
+    
 </head>
 <body>
-<!-- channel area -->
+<!-- #4 #one #page -->
 <div id="channels">
-    <h1><img src="https://ip.lfe.mw.tum.de/sections/moocus.png" style="width: 56px; height: 56px;" alt="picture of the talkative duck">chatter|app</h1>
-
-    <ul>
-        <li>#Yummy<img src="https://ip.lfe.mw.tum.de/sections/star.png" style="width: 20px; height: 20px;" alt="favorite"></li>
-        <li class="selected">#SevenContinents<img src="https://ip.lfe.mw.tum.de/sections/star.png" style="width: 20px; height: 20px;" alt="favorite"></li>
-        <li>#KillerApp<img src="https://ip.lfe.mw.tum.de/sections/star-o.png" style="width: 20px; height: 20px;" alt="non-favorite"></li>
-        <li>#FirstPersonOnMars<img src="https://ip.lfe.mw.tum.de/sections/star-o.png" style="width: 20px; height: 20px;" alt="non-favorite"></li>
-        <li>#Octoberfest<img src="https://ip.lfe.mw.tum.de/sections/star.png" style="width: 20px; height: 20px;" alt="favorite"></li>
-        </ul>
-
-    <div id="tab-bar">
-        <button class="selected"><img src="https://ip.lfe.mw.tum.de/sections/lightbulb-o.png" style="width: 20px; height: 20px;" alt="new">new</button>
-        <button><img src="https://ip.lfe.mw.tum.de/sections/fire.png" style="width: 20px; height: 20px;" alt="trending">trending</button>
-        <button><img src="https://ip.lfe.mw.tum.de/sections/star.png" style="width: 20px; height: 20px;" alt="favorites">favorites</button>
-    </div>
-</div>
-<!-- chat area -->
-<div id="chat">
-    <h1>#SevenContinents
-        <small>by
-            <strong><a href="https://map.what3words.com/cheeses.yard.applies" target="_blank">cheeses.yard.applies</a></strong>
-        </small>
+    <h1>
+        <!-- #3 #channels #moocus the talkative duck-->
+      <img src="http://ip.lfe.mw.tum.de/sections/moocus.png" alt="Moocus, the chatty duck!" style="height: 56px;"> 
+        <span id="title">chatter|app</span>
     </h1>
 
+    <!-- #3 #channels #list is much better, than headlines or paragraphs... -->
+    <ul>
+        <li>#Yummy
+            <!-- #3 #channels #favorite this is not starred -->
+            <span class="channel-meta" onclick="switchChannel('#Yummy'); emptyStar();">
+                <!--document.getElementById('current_channel_name').innerHTML = '#Yummy'; -->
+                <img  src="http://ip.lfe.mw.tum.de/sections/star-o.png" alt="not starred">
+                <img  src="http://ip.lfe.mw.tum.de/sections/chevron-right.png" alt="right-arrow">
+            </span>
+        </li>
+
+        <!-- #4 #channel is #highlighted -->
+        <li class="selected">
+            #SevenContinents
+            <!-- #3 #channels #favorite this is starred -->
+            <span class="channel-meta" onclick="switchChannel('#SevenContinents'); emptyStar();">
+            <img  src="http://ip.lfe.mw.tum.de/sections/star.png" alt="starred"><img src="http://ip.lfe.mw.tum.de/sections/chevron-right.png" alt="right-arrow">
+            </span>
+        </li>
+        <li>#KillerApp
+            <!-- #3 #channels #favorite this is not starred -->
+            <span class="channel-meta" onclick="switchChannel('#KillerApp'); emptyStar();">
+            <img src="http://ip.lfe.mw.tum.de/sections/star-o.png" alt="not starred"><img src="http://ip.lfe.mw.tum.de/sections/chevron-right.png" alt="right-arrow">
+            </span>
+        </li>
+        <li>#FirstPersonOnMars
+            <!-- #3 #channels #favorite this is starred -->
+            <span class="channel-meta" onclick="switchChannel('#FirstPersonOnMars'); emptyStar();">
+            <img src="http://ip.lfe.mw.tum.de/sections/star.png" alt="starred"><img src="http://ip.lfe.mw.tum.de/sections/chevron-right.png" alt="right-arrow">
+            </span>
+        </li>
+        <li>#Octoberfest
+            <!-- #3 #channels #favorite this is not starred -->
+            <span class="channel-meta" onclick="switchChannel('#Octoberfest'); emptyStar();">
+            <img  src="http://ip.lfe.mw.tum.de/sections/star-o.png" alt="not starred"><img src="http://ip.lfe.mw.tum.de/sections/chevron-right.png" alt="right-arrow">
+            </span>    
+        </li>
+
+    </ul>
+
+
+    <!-- #3 #tab-bar #container -->
+    <!-- #4 #sweat #tab-bar -->
+    <div id="tab-bar">
+        <!-- #4 #tab-bar selected channel should be #highlighted -->
+        <button class="selected" id="lightbulb" onclick="selectTab('#lightbulb');">
+            <!-- #3 #tab-bar #images -->
+            <img src="http://ip.lfe.mw.tum.de/sections/lightbulb-o.png" alt="Bulb">
+            New
+        </button>
+        <button id="fire" onclick="selectTab('#fire');">
+            <!-- #3 #tab-bar #images -->
+            <img src="http://ip.lfe.mw.tum.de/sections/fire.png" alt="Hot">
+            Trending
+        </button>
+        <button id="star" onclick="selectTab('#star');">
+            <!-- #3 #tab-bar #images -->
+            <img src="http://ip.lfe.mw.tum.de/sections/star.png" alt="Star">
+            Favorites
+        </button>
+    </div>
+</div>
+
+<!-- #4 #one #page -->
+<div id="chat">
+    <h1 class="selected_channel">
+        <span id="selected_channel_name">#SevenContinents</span>
+        <span id="location"><small>by
+            
+            <a id="locationRef" href="http://w3w.co/cheeses.yard.applies" target="_blank">
+            <strong>cheeses.yard.applies</strong>
+            </a>
+            </small></span>
+        <img id="likestar" src="http://ip.lfe.mw.tum.de/sections/star.png" alt="Star" onclick="filledStar();">
+    </h1>
+
+    <!-- #3 #chat #container -->
+    <!-- #4 assign a #class to all your #messages to address them with css -->
+    <!-- #4 apply a class "own" to your #messages to align them separately with #margins -->
     <div class="message own">
         <h3>
-            <strong><a href="https://map.what3words.com/cheeses.yard.applies" target="_blank">cheeses.yard.applies</a></strong>
+            <!-- #3 #chat #location points to w3w in a new tab -->
+            <a href="http://w3w.co/cheeses.yard.applies" target="_blank">
+                <strong>cheeses.yard.applies</strong>
+            </a>
             Wed, June 20th, 13:37
             <em>15 min. left</em>
         </h3>
-        <p>What's the place you folks call home?</p>
-        <button>+5 min.</button>
-    </div> 
+            <p>What's the place you folks call home?<button>+5 min.</button></p>
+    </div>
+
+    <!-- #3 #chat #container -->
+    <!-- #4 #messages #class -->
     <div class="message">
         <h3>
-            <strong><a href="https://map.what3words.com/truck.cotton.zone" target="_blank">truck.cotton.zone</a></strong>
+            <!-- #3 #chat #location points to w3w in a new tab -->
+            <a href="http://w3w.co/truck.cotton.zone" target="_blank">
+                <strong>truck.cotton.zone</strong>
+            </a>
             Wed, June 20th, 13:39
             <em>4 min. left</em>
         </h3>
-        <p>BRISBANE! Hang loose!</p>
-        <button>+5 min.</button>
+        <p>BRISBANE! Hang loose!
+        <button>+5 min.</button></p>
     </div>
+
+    <!-- #3 #chat #container -->
+    <!-- #4 #messages #class -->
     <div class="message">
         <h3>
-            <strong><a href="https://map.what3words.com/thus.best.dishes" target="_blank">thus.best.dishes</a></strong>
+            <!-- #3 #chat #location points to w3w in a new tab -->
+            <a href="http://w3w.co/thus.best.dishes" target="_blank">
+                <strong>thus.best.dishes</strong>
+            </a>
             Wed, June 20th, 14:02
             <em>12 min. left</em>
         </h3>
-        <p>The big apple.</p>
-        <button>+5 min.</button>
+        <p>The big apple.
+        <button>+5 min.</button></p>
     </div>
+
+    <!-- #3 #chat #container -->
+    <!-- #4 #messages #class -->
     <div class="message">
         <h3>
-            <strong><a href="https://map.what3words.com/driveway.helper.magazine" target="_blank">driveway.helper.magazine</a></strong>
+            <!-- #3 #chat #location points to w3w in a new tab -->
+            <a href="http://w3w.co/driveway.helper.magazine" target="_blank">
+                <strong>driveway.helper.magazine</strong>
+            </a>
             Wed, June 20th, 14:02
             <em>7 min. left</em>
         </h3>
-        <p>Eu sou um Carocas.</p>
-        <button>+5 min.</button>
+        <p>Eu sou um Cariocas.
+        <button>+5 min.</button></p>
     </div>
+
+    <!-- #3 #chat #container -->
+    <!-- #4 #messages #class -->
     <div class="message">
         <h3>
-            <a href="http://w3w.co/escapes.pitch.saucepan" target="_blank">escapes.pitch.saucepan</a></strong>
+            <!-- #3 #chat #location points to w3w in a new tab -->
+            <a href="http://w3w.co/escapes.pitch.saucepan" target="_blank">
+                <strong>escapes.pitch.saucepan</strong>
+            </a>
             Wed, June 20th, 14:07
             <em>14 min. left</em>
         </h3>
-        <p>Greetings from the western cape!</p>
-        <button>+5 min.</button>        
+        <p>Greetings from the western cape!
+        <button>+5 min.</button></p>
     </div>
+
+    <!-- #3 #chat #container -->
+    <!-- #4 #messages #class -->
     <div class="message">
         <h3>
-            <strong><a href="https://map.what3words.com/meanings.identity.pays" target="_blank">meanings.identity.pays</a></strong>
+            <!-- #3 #chat #location points to w3w in a new tab -->
+            <a href="http://w3w.co/meanings.identity.pays" target="_blank">
+                <strong>meanings.identity.pays</strong>
+            </a>
             Wed, June 20th, 04:08
             <em>15 min. left</em>
         </h3>
-        <p>北京</p>
-        <button>+5 min.</button>        
+        <p>北京
+        <button>+5 min.</button></p>
+    </div>
+    <div id="emojis">&#x1F601;&#x1F602;&#x1F603;&#x1F604;&#x1F605;&#x1F605;&#x1F605;&#128516;
+            &#x1f604;&#128517;&#x1f605;&#128518;&#x1f606;&#128519;&#x1f607;&#128520;
+            &#x1f608;&#128521;&#x1f609;&#128522;&#x1f60a;&#128523;&#x1f60b;&#128524;
+            &#x1f60c;&#128525;&#x1f60d;&#128526;&#x1f60e;&#128527;&#x1f60f;&#128528;
+            &#x1f610;&#128529;&#x1f611;&#128530;&#x1f612;&#128531;&#x1f613;&#128532;
+            &#x1f614;&#128533;&#x1f615;&#128534;&#x1f616;&#128535;&#x1f617;&#128536;
+            &#x1f618;&#128537;&#x1f619;
+    </div>
+    <div id="chat-bar">
+        <button id="emojis-button" onclick="emoji_available();">
+            <img src="http://ip.lfe.mw.tum.de/sections/smile-o.png" alt="smiley">
+        </button>
     </div>
 </div>
 

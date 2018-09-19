@@ -1,6 +1,13 @@
-/*Global styles */
+/* #4 #sweat #external css file */
+
+/* GLOBAL */
+
+/* #4 #global styles*/
 * {
+    /* #4 use #roboto #font */
     font-family: 'Roboto', 'Arial', sans-serif;
+
+     /* #4 #sweat take care of #spacing between various elements */
     margin: 0;
     padding: 0;
 }
@@ -9,94 +16,269 @@ body {
     background-color: #F5F5F5;
 }
 
-strong, button{
+/* #4 # sweat #uppercase buttons and w3w locations */
+button, strong {
     text-transform: uppercase;
 }
-/*App Bar styles*/
+/* APP BAR */
+
+/* #4 #sweat address both #app-bar s */
 h1 {
     background-color: #3F51B5;
+    border: none;
+    color: white;
+    font-family: Roboto;
+    font-size: medium;
+    height: 64px;
+    padding-left: 16px;
+    padding-right: 16px;
+    line-height: 64px;
+    top: 0px;    
+}
+/*  chatter|app tab location*/
+h1 span{
+    position: absolute;
+    font-family: Roboto;
+    font-size: medium;
+    line-height: 64px;
+    height: 64px; 
+    padding-left: 10px;
+}
+/* talketive duck image location*/
+h1 img{
+    position: relative;
+    height: 40px;
+    line-height: 40px;
+    top: 8px;
+    left: 10px;   
+}
+
+.selected_channel {
+    color: white;   
+}
+#selected_channel_name{
     color: white;
 }
+.selected_channel #location {
+    color: white;    
+    left: 180px; 
+}
+.selected_channel img{
+    float: right;
+    height: 35px;
+    line-height: 35px;
+    top: 10px;
+    right: 10px;
+    bottom: 10px;
+    margin-right: 6px;
+    margin-bottom: 6px;
+    margin-top: 6px;
+} 
+#likestar {
+    cursor: pointer;
+}
+#location a {
+    color: white;
+    font-size: medium; 
+}  
+/* CHANNELS LIST */
 
-/*Channel List*/
- /*styles for channel area*/
+/* #4 #sweat #channels */
+ul {
+    /* #3 #channels #list modifies h2 to ul */
+    background-color: white;
+    /* #3 #channels #bullets removed */
+    list-style-type: none;
+   
+}
+
 li {
+    /* #4 #channel #tile geometry */
     box-sizing: border-box;
-    height: 40px;
+    height: 48px;
     padding: 16px;
     font-size: 16px;
+    /* #4 #channel tiles are separated by #lines */
     border-bottom: 1px solid #F5F5F5;
+    
 }
 
-ul {
-    list-style-type: none;
-    text-transform: uppercase;
-    background-color: white;
-}
-
+/* #4 active #channel is #highlighted */
 li.selected {
     color: #3F51B5;
     border-left: 4px solid #3F51B5;
+    
 }
 
-li img {
-    vertical-align: middle;
-}
+/* TAB BAR */
 
-/*Tab Bar*/
+/* #4 #sweat #tab-bar */
 #tab-bar {
+    /* #3 #tab-bar #container should be white */
     background-color: white;
+    /* #3 #tab-bar #container has all buttons centered */
     text-align: center;
+    position: fixed;
+    width: 40%;
+    bottom: 0px;
+    /*Used the flexbox tool to distribute the three buttons in the bottom of the channel window
+    equally throughout the whole width*/
+    display: flex;
+    justify-content: space-around;    
+    
 }
 
+/* #4 add styles to #tab-bar #buttons */
 #tab-bar button {
     background-color: white;
     border: none;
     font-size: 13px;
+
+    /* #4 #tab-bar buttons have a width of #one-third of the available space */
     width: 33%;
     height: 72px;
     padding: 16px;
 }
 
+/* #4 #tab-bar buttons do have a #line-break and images are centered due to the left&right auto margin */
 #tab-bar button img {
     display: block;
     margin: 0 auto 4px auto;
 }
 
+/* #4 the selected #tab-bar #button is #highlighted */
 #tab-bar button.selected {
     color: #3F51B5;
     border-bottom: 4px solid #3F51B5;
 }
 
-/*Messages*/
+
+/* MESSAGES */
+/* #4 select #specific #messages by class and re-assign element styles according to their #hierarchy in a nested way */
 .message {
+    /* #3 #chat #width*/
     width: 80%;
+
+    /* #4 align all #messages using #margins */
     margin-left: 2.5%;
+
+    /* #4 #message distance to next message container*/
     margin-bottom: 8px;
+    
 }
 
-.message p {
-    background-color: white;
-    padding: 16px;
-}
-
+/*this selector is the flex parent of the messages boxes*/
 .message h3 {
     font-size: medium;
+    display: flex;
+    /*distributes the meta-data through the width of the div*/
+    justify-content: space-between;
+    
 }
-
-.message em {
+/*enlarging the remaining time from the meta-data*/
+.message h3 em {
     font-size: larger;
     font-style: normal;
 }
+/*applying the color of the text of the location*/
 
+.message h3 a {
+    /* #3 #chat #link color is primary text */
+    color: black;
+}
+/*applying the font size color properties to the text inside the box*/
+/*+5min buttton located to the far right with 8px padding bottom, right*/
+.message p {
+    background-color: white;
+    padding: 16px 8px 8px 16px;
+    color: black;
+    border: none;
+    text-align: left;
+    font-size: 17px;
+    line-height: 17px;
+    
+
+}
+/*Using the float property to locate the 5min button to the far right*/
 .message button {
+    position: relative;
     background-color: #CDDC39;
     color: black;
-    text-transform: uppercase;
+    text-transform: uppercase; 
+    float: right;
+    
+    
 }
 
-.message.own {
+/* own message uses a 17.5% margin to differentiate from the other messages*/
+/* #4 left align own #messages using #margins */
+.message.own{
     margin-left: 17.5%;
+    
+}
+
+/* LAYOUT FOR CHANNELS AND CHAT AREA*/
+/*This selector locates channels div to 40% left of the window*/
+#channels {
+    position: absolute; 
+    left: 0;
+    width: 40%;
+}
+
+/*This selector locates chat div to 60% of the window on the right side*/
+#chat {
+    position: absolute;
+    right: 0;
+    width: 60%;
+    
+}
+/*class created to align stars and arrows to the right of the tile in each channel*/
+.channel-meta{
+    vertical-align: middle;
+    float: right;
+    cursor: pointer;
+}
+#chat-bar{
+    background-color: white;
+    border: none;
+    /* #3 #tab-bar #container should be white */
+    /* #3 #tab-bar #container has all buttons centered */
+    /*Heigth and line height equal to center the items vertically*/
+    height: 72px;
+    line-height: 72px;
+    /*fixed position to be able to see it everytime*/
+    position: fixed;
+    width: 100%;
+    bottom: 0px;
+    padding-left: 5px;
+    display: flex;
+    
+}
+/*emoji window with thin black borders, 28px fontsize, squared shape, overflow 
+auto, to be able to scroll when there are too many emojis*/
+#emojis {
+    background-color: white;
+    border: solid;
+    border-width: thin;
+    width: 200px;
+    height: 200px;
+    font-size: 28px;
+    padding: 16px 16px;
+    text-align: left;
+    overflow: auto;
+    position: relative;
+    left: 16px;
+    bottom: 0px;
+    display: none;
+
+}
+/*This selector is to locate the emoji icon to the bottom left of the chat bar*/
+#chat-bar #emojis-button{
+    border: none;
+    padding-top: 20px;
+    padding-left: 5px;
+    
+    
 }
 
 
